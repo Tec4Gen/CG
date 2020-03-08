@@ -1,11 +1,1 @@
-﻿  MyForm.cpp
-C:\Users\Neo\Desktop\Task_3_Martyshin\Martyshin\MyForm.h(164,21): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Neo\Desktop\Task_3_Martyshin\Martyshin\MyForm.h(167,82): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Users\Neo\Desktop\Task_3_Martyshin\Martyshin\MyForm.h(167,67): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Users\Neo\Desktop\Task_3_Martyshin\Martyshin\MyForm.h(167,52): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Users\Neo\Desktop\Task_3_Martyshin\Martyshin\MyForm.h(171,22): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Neo\Desktop\Task_3_Martyshin\Martyshin\MyForm.h(214,17): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
-C:\Users\Neo\Desktop\Task_3_Martyshin\Martyshin\MyForm.h(215,17): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
-C:\Users\Neo\Desktop\Task_3_Martyshin\Martyshin\Matrix.h(87): warning C4172: возвращение адреса локальной или временной переменной
-  MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
-  Martyshin.vcxproj -> C:\Users\Neo\Desktop\Task_3_Martyshin\Debug\Martyshin.exe
+﻿  Martyshin.vcxproj -> C:\Users\Neo\Desktop\СП\Task_3_Martyshin\Debug\Martyshin.exe
