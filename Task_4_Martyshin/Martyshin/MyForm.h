@@ -58,7 +58,7 @@ namespace Martyshin {
 
 	mat3 T;
 	mat3 initT;			// матрица начального преобразования
-	vector<path> figure;
+	vector<model> models;
 	float Vx;
 	float Vy;
 	float aspectFig;
@@ -176,22 +176,26 @@ namespace Martyshin {
 
 		Pen^ rectPen = gcnew Pen(Color::Black, 2);
 		g->DrawRectangle(rectPen, left, top, Wx, Wy);
+		for (int k = 0; k < models.size(); k++) { // цикл по рисункам
+			vector<path> figure = models[k].figure; // список ломаных очередного рисунка
+			mat3 TM = T * models[k].modelM; // матрица общего преобразования рисунка
+			for (int i = 0; i < figure.size(); i++) {
 
-		for (int i = 0; i < figure.size(); i++) {
+				path lines = figure[i]; // lines - очередная ломаная линия
+				Pen^ pen = gcnew Pen(Color::FromArgb(lines.color.x, lines.color.y, lines.color.z));
+				pen->Width = lines.thickness;
 
-			path lines = figure[i]; // lines - очередная ломаная линия
-			Pen^ pen = gcnew Pen(Color::FromArgb(lines.color.x, lines.color.y, lines.color.z));
-			pen->Width = lines.thickness;
+				vec2 start = normalize(T * vec3(lines.vertices[0], 1.0)); // начальная точка первого отрезка
 
-			vec2 start = normalize(T * vec3(lines.vertices[0], 1.0)); // начальная точка первого отрезка
-			for (int j = 1; j < lines.vertices.size(); j++) { // цикл по конечным точкам (от единицы)
-				vec2 end = normalize(T * vec3(lines.vertices[j], 1.0)); // конечная точка
-				vec2 tmpEnd = end; // продублировали координаты точки для будущего использования
-				if (clip(start, end, minX, minY, maxX, maxY)) { // если отрезок видим
-					// после отсечения, start и end - концы видимой части отрезка
-					g->DrawLine(pen, start.x, start.y, end.x, end.y); // отрисовка видимой части
+				for (int j = 1; j < lines.vertices.size(); j++) { // цикл по конечным точкам (от единицы)
+					vec2 end = normalize(T * vec3(lines.vertices[j], 1.0)); // конечная точка
+					vec2 tmpEnd = end; // продублировали координаты точки для будущего использования
+					if (clip(start, end, minX, minY, maxX, maxY)) { // если отрезок видим
+						// после отсечения, start и end - концы видимой части отрезка
+						g->DrawLine(pen, start.x, start.y, end.x, end.y); // отрисовка видимой части
+					}
+					start = tmpEnd; // конечная точка текущего отрезка становится начальной точкой следующего
 				}
-				start = tmpEnd; // конечная точка текущего отрезка становится начальной точкой следующего
 			}
 		}
 	}
@@ -214,7 +218,13 @@ namespace Martyshin {
 			ifstream in;
 			in.open(fileName);
 			if (in.is_open()) {
-				figure.clear(); // очищаем имеющийся список ломаных			// временные переменные для чтения из файла
+				models.clear(); // очищаем имеющийся список ломаных			// временные переменные для чтения из файла
+				
+				mat3 M = mat3(1.f); // матрица для получения модельной матрицы
+				mat3 initM; // матрица для начального преобразования каждого рисунка
+				vector<mat3> transforms; // стек матриц преобразований
+				vector<path> figure;
+
 				float thickness = 2; // толщина со значением по умолчанию 2
 				float r, g, b; // составляющие цвета
 				r = g = b = 0; // значение составляющих цвета по умолчанию (черный)
@@ -232,7 +242,7 @@ namespace Martyshin {
 						if (cmd == "frame") { // размеры изображения
 							s >> Vx >> Vy; // считываем глобальные значение Vx и Vy
 							aspectFig = Vx / Vy; // обновление соотношения сторон
-							
+
 							float aspectRect = Wx / Wy; // соотношение сторон окна рисования
 							// коэффициент увеличения при сохранении исходного соотношения сторон
 							// смещение центра рисунка с началом координат
@@ -273,6 +283,42 @@ namespace Martyshin {
 								}
 							}
 							figure.push_back(path(vertices, vec3(r, g, b), thickness));
+						}
+						else if (cmd == "model") { // начало описания нового рисунка
+							float mVcx, mVcy, mVx, mVy; // параметры команды model
+							s >> mVcx >> mVcy >> mVx >> mVy; // считываем значения переменных
+
+							float S = mVx / mVy < 1 ? 2.f / mVy : 2.f / mVx;
+							// сдвиг точки привязки из начала координат в нужную позицию
+							// после которого проводим масштабирование
+							initM = scale(S) * translate(-mVcx, -mVcy);
+							figure.clear();
+						}
+						else if (cmd == "figure") { // формирование новой модели
+							models.push_back(model(figure, M * initM)); // добавляем рисунок в список
+						}
+						else if (cmd == "translate") { // перенос
+							float Tx, Ty; // параметры преобразования переноса
+							s >> Tx >> Ty; // считываем параметры
+							M = translate(Tx, Ty) * M; // добавляем перенос к общему преобразованию
+						}
+						else if (cmd == "scale") { // масштабирование
+							float S; // параметр масштабирования
+							s >> S; // считываем параметр
+							M = scale(S) * M; // добавляем масштабирование к общему преобразованию
+						}
+						else if (cmd == "rotate") { // поворот
+							float theta; // угол поворота в градусах
+							s >> theta; // считываем параметр
+							M = rotate(-theta / 180.f * Math::PI) * M; // добавляем поворот к общему преобразованию
+
+						}
+						else if (cmd == "pushTransform") { // сохранение матрицы в стек
+							transforms.push_back(M); // сохраняем матрицу в стек	
+						}
+						else if (cmd == "popTransform") { // откат к матрице из стека
+							M = transforms.back(); // получаем верхний элемент стека
+							transforms.pop_back(); // выкидываем матрицу из стека
 						}
 					}
 					getline(in, str);
