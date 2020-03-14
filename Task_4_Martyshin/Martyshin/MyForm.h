@@ -328,8 +328,8 @@ namespace Martyshin {
 		}
 	}
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-		float Wcx = ClientRectangle.Width / 2.f; // координаты центра
-		float Wcy = ClientRectangle.Height / 2.f; // текущего окна
+		float Wcx = Wx / 2.f; // координаты центра
+		float Wcy = Wy / 2.f; // текущего окна
 		switch (e->KeyCode) {
 			//сброс
 		case Keys::Escape:
