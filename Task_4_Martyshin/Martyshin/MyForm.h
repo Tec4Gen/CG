@@ -185,10 +185,10 @@ namespace Martyshin {
 				Pen^ pen = gcnew Pen(Color::FromArgb(lines.color.x, lines.color.y, lines.color.z));
 				pen->Width = lines.thickness;
 
-				vec2 start = normalize(T * vec3(lines.vertices[0], 1.0)); // начальная точка первого отрезка
+				vec2 start = normalize(TM * vec3(lines.vertices[0], 1.0)); // начальная точка первого отрезка
 
 				for (int j = 1; j < lines.vertices.size(); j++) { // цикл по конечным точкам (от единицы)
-					vec2 end = normalize(T * vec3(lines.vertices[j], 1.0)); // конечная точка
+					vec2 end = normalize(TM * vec3(lines.vertices[j], 1.0)); // конечная точка
 					vec2 tmpEnd = end; // продублировали координаты точки для будущего использования
 					if (clip(start, end, minX, minY, maxX, maxY)) { // если отрезок видим
 						// после отсечения, start и end - концы видимой части отрезка
@@ -219,7 +219,7 @@ namespace Martyshin {
 			in.open(fileName);
 			if (in.is_open()) {
 				models.clear(); // очищаем имеющийся список ломаных			// временные переменные для чтения из файла
-				
+
 				mat3 M = mat3(1.f); // матрица для получения модельной матрицы
 				mat3 initM; // матрица для начального преобразования каждого рисунка
 				vector<mat3> transforms; // стек матриц преобразований
@@ -232,6 +232,7 @@ namespace Martyshin {
 				string cmd;
 				string str; // строка, в которую считываем строки файла
 				getline(in, str); // считываем из входного файла первую строку
+
 				while (in) { // если очередная строка считана успешно
 				// обрабатываем // считываем очередную строку
 					if ((str.find_first_not_of(" \t\r\n") != string::npos) && (str[0] != '#')) {
@@ -311,7 +312,6 @@ namespace Martyshin {
 							float theta; // угол поворота в градусах
 							s >> theta; // считываем параметр
 							M = rotate(-theta / 180.f * Math::PI) * M; // добавляем поворот к общему преобразованию
-
 						}
 						else if (cmd == "pushTransform") { // сохранение матрицы в стек
 							transforms.push_back(M); // сохраняем матрицу в стек	
