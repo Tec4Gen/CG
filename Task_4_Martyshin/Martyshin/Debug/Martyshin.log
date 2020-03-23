@@ -6,8 +6,6 @@ C:\Users\Neo\Desktop\CG\Task_4_Martyshin\Martyshin\MyForm.h(185,68): warning C42
 C:\Users\Neo\Desktop\CG\Task_4_Martyshin\Martyshin\MyForm.h(185,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\Neo\Desktop\CG\Task_4_Martyshin\Martyshin\MyForm.h(190,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Neo\Desktop\CG\Task_4_Martyshin\Martyshin\MyForm.h(314,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
-  Generating Code...
 C:\Users\Neo\Desktop\CG\Task_4_Martyshin\Martyshin\Matrix.h(87): warning C4172: returning address of local variable or temporary
   MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Martyshin.vcxproj -> C:\Users\Neo\Desktop\CG\Task_4_Martyshin\Debug\Martyshin.exe

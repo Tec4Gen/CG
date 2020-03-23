@@ -280,22 +280,22 @@ path 7
 #*******************************
 
 pushTransform
-translate 14 5
+translate 10 0
 figure
 
 
 popTransform
 pushTransform
 scale 2
+translate 14 0
 rotate 90
-translate 9 9.2
 figure
 
 popTransform
 pushTransform
 scale 3
+translate 18 0
 rotate 180
-translate 2 4
 figure
 
 # второй рисунок
@@ -400,16 +400,17 @@ path 4
 2.25 2. # нос слева 
 2. 2.5 
 
-# преобразования и размещения по описанию
+ преобразования и размещения по описанию
 popTransform
 pushTransform
-rotate 45
+
 scale 1.5
-translate 13 7.5
+translate 12 0
+rotate 45
 figure
 
 popTransform
+scale 3
+translate 16 0
 rotate 135
-scale 2
-translate 4.5 7.8
 figure
