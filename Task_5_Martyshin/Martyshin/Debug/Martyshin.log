@@ -1,0 +1,6 @@
+﻿  MyForm.cpp
+  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
+  Generating Code...
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin\Martyshin\Matrix.h(87): warning C4172: returning address of local variable or temporary
+  MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Martyshin.vcxproj -> C:\Users\Neo\Desktop\CG\Task_5_Martyshin\Debug\Martyshin.exe
