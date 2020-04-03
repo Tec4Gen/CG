@@ -154,12 +154,11 @@ namespace Martyshin {
 	private: float left = 30, right = 100, top = 20, bottom = 50; // расстояния до границ окна
 		   float minX = left, maxX; // диапазон изменения координат x
 		   float minY = top, maxY; // диапазон изменения координат y
-		   float Wcx, Wcy; // координаты левого нижнего угла прямоугольника
+		   float Wcx = left, Wcy; // координаты левого нижнего угла прямоугольника
 		   float Wx, Wy; // ширина и высота прямоугольника
 	private: System::Void rectCalc() {
 		maxX = ClientRectangle.Width - right; // диапазон изменения координат x
 		maxY = ClientRectangle.Height - bottom; // диапазон изменения координат y
-		Wcx = left + maxX / 2;
 		Wcy = maxY; // координаты левого нижнего угла прямоугольника
 		Wx = maxX - left; // ширина прямоугольника
 		Wy = maxY - top; // ширина и высота прямоугольника

@@ -58,8 +58,9 @@ namespace Martyshin {
 
 	mat3 T;
 	mat3 initT;			// матрица начального преобразования
-	float Vx;
-	float Vy;
+	vec2 Vc; // координаты левого нижнего угла
+	vec2 V; // размеры прямоугольника в пространстве графика
+	vec2 Vc_work, V_work; // рабочие параметры прямоугольника
 	float Ty;
 	/// <summary>
 	/// Сводка для MyForm
@@ -139,20 +140,32 @@ namespace Martyshin {
 	private: float left = 30, right = 100, top = 20, bottom = 50; // расстояния до границ окна
 		   float minX = left, maxX; // диапазон изменения координат x
 		   float minY = top, maxY; // диапазон изменения координат y
-		   float Wcx, Wcy; // координаты левого нижнего угла прямоугольника
+		   float Wcx = left, Wcy; // координаты левого нижнего угла прямоугольника
 		   float Wx, Wy; // ширина и высота прямоугольника
 	private: System::Void rectCalc() {
 		maxX = ClientRectangle.Width - right; // диапазон изменения координат x
 		maxY = ClientRectangle.Height - bottom; // диапазон изменения координат y
-		Wcx = left + maxX / 2;
 		Wcy = maxY; // координаты левого нижнего угла прямоугольника
 		Wx = maxX - left; // ширина прямоугольника
 		Wy = maxY - top; // ширина и высота прямоугольника
 	}
+	private: System::Void worldRectCalc() {
+		Vc_work = normalize(T * vec3(Vc, 1.f));
+		V_work = mat2(T) * V;
+	}
+	private: float f(float x) {
+		return x * sin(x);
+	}
+
+
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		Vc = vec2(-2.f, -2.f);
+		V = vec2(4.f, 4.f);
+
 		initT = mat3(1.f);
 		T = initT;
 		rectCalc();
+		worldRectCalc();
 	}
 
 
@@ -164,6 +177,35 @@ namespace Martyshin {
 
 		Pen^ rectPen = gcnew Pen(Color::Black, 2);
 		g->DrawRectangle(rectPen, left, top, Wx, Wy);
+
+		Pen^ pen = gcnew Pen(Color::Blue, 1);
+		float deltaX = V_work.x / Wx; // шаг по x в мировых координатах
+
+		vec2 start; // точка начала отрезка в координатах экрана
+		float x, y; // переменные для координат точки в мировой СК
+		start.x = Wcx; // для начальной точки первого отрезка устанавливаем координату x
+		x = Vc_work.x; // координата x начальной точки первого отрезка в мировых координатах
+		y = f(x); // координата y начальной точки в мировых координатах
+		// вычисляем соответствующее значение в координатах экрана
+		start.y = Wcy - (y - Vc_work.y) / V_work.y * Wy;
+
+		while (start.x < maxX) {
+			vec2 end;// точка конца отрезка в координатах экрана
+			end.x = start.x + 1.f; // координата x отличается на единицу
+			x += deltaX; // координата x конечной точки отрезка в мировых координатах
+			y = f(x); // координата y конечной точки в мировых координатах
+			// вычисляем соответствующее значение в координатах экрана
+			end.y = Wcy - (y - Vc_work.y) / V_work.y * Wy;
+
+			vec2 tmpEnd = end;
+			bool visible = clip(start, end, minX, minY, maxX, maxY);
+			if (visible) { // если отрезок видим
+			// после отсечения, start и end - концы видимой части отрезка
+				g->DrawLine(pen, start.x, start.y, end.x, end.y); // отрисовка видимых частей
+			}
+			// конечная точка неотсеченного отрезка становится начальной точкой следующего
+			start = tmpEnd;
+		}
 	}
 		   //ресайз
 	private: System::Void MyForm_Resize_1(System::Object^ sender, System::EventArgs^ e) {
@@ -173,7 +215,7 @@ namespace Martyshin {
 
 		   //Свич для кнопок
 
-	
+
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		float Wcx = Wx / 2.f; // координаты центра
 		float Wcy = Wy / 2.f; // текущего окна
