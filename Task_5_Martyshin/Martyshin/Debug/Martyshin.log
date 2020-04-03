@@ -1,4 +1,0 @@
-﻿  MyForm.cpp
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin\Martyshin\MyForm.h(157,12): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  Martyshin.vcxproj -> C:\Users\Neo\Desktop\CG\Task_5_Martyshin\Debug\Martyshin.exe

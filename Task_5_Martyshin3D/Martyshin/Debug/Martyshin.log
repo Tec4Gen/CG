@@ -1,0 +1,11 @@
+﻿  MyForm.cpp
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(146,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(146,40): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(170,12): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(312,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(312,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(312,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(346,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\Matrix.h(140): warning C4172: returning address of local variable or temporary
+  MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Martyshin.vcxproj -> C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Debug\Martyshin.exe
