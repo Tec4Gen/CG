@@ -142,6 +142,7 @@ namespace Martyshin {
 		   float minY = top, maxY; // диапазон изменения координат y
 		   float Wcx = left, Wcy; // координаты левого нижнего угла прямоугольника
 		   float Wx, Wy; // ширина и высота прямоугольника
+		   int numXsect = 5, numYsect = 5;
 	private: System::Void rectCalc() {
 		maxX = ClientRectangle.Width - right; // диапазон изменения координат x
 		maxY = ClientRectangle.Height - bottom; // диапазон изменения координат y
@@ -169,9 +170,6 @@ namespace Martyshin {
 		rectCalc();
 		worldRectCalc();
 	}
-
-
-
 	private: System::Void MyForm_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 
 		Graphics^ g = e->Graphics;
@@ -194,6 +192,36 @@ namespace Martyshin {
 			// вычисляем соответствующее значение в координатах экрана
 			start.y = Wcy - (y - Vc_work.y) / V_work.y * Wy;
 		}
+		//сетка по x
+        Pen^ gridPen = gcnew Pen(Color::Black, 1);
+        SolidBrush^ drawBrush = gcnew SolidBrush(Color::Black);
+        System::Drawing::Font^ drawFont = gcnew System::Drawing::Font("Arial", 8);
+ 
+        float gridStep_x = Wx / numXsect; // расстояние между линиями сетки по x
+        float grid_dX = V_work.x / numXsect; // расстояние между линиями сетки по x в мировых координатах
+        float tick_x = Vc_work.x; // значение соответствующее первой линии сетки
+        for (int i = 0; i <= numXsect; i++) { // цикл по количеству линий
+            float tmpXCoord_v = Wcx + i * gridStep_x; // координата x i-й вертикальной линии
+
+            g->DrawLine(gridPen, tmpXCoord_v, Wy + top, tmpXCoord_v, minY);
+            if (i > 0 && i < numXsect) // если линия не крайняя
+            // выводим текст в нижней точке диагональной линии
+                g->DrawString(tick_x.ToString("F4"), drawFont, drawBrush, tmpXCoord_v, Wcy);
+ 
+            tick_x += grid_dX; // вычисляем значение, соответствующее следующей линии
+        }
+		//сетка по y
+        float gridStep_y = Wy / numYsect; // расстояние между линиями сетки по y
+        float grid_dY = V_work.y / numYsect; // расстояние между линиями сетки по y в мировых координатах
+        float tick_y = Vc_work.y; // значение соответствующее первой линии сетки
+        for (int i = 0; i <= numYsect; i++) { // цикл по количеству линий
+            float tmpYCoord_g = Wcy - i * gridStep_y; // координата y i-й вертикальной линии
+            g->DrawLine(gridPen, Wx + left, tmpYCoord_g, minX, tmpYCoord_g);
+            if (i > 0 && i < numYsect) // если линия не крайняя
+                g->DrawString(tick_y.ToString("F4"), drawFont, drawBrush, Wx + left, tmpYCoord_g);
+ 
+            tick_y += grid_dY; // вычисляем значение, соответствующее следующей линии
+        }
 
 		float deltaY; // высота точки в прямоугольнике (доля общей высоты)
 		float red, green, blue; // компоненты цвета отрезка
@@ -254,16 +282,50 @@ namespace Martyshin {
 		case Keys::Escape:
 			T = initT;
 			break;
+			//////////////WASDRF///////////////////
+		case Keys::W:
+			T = translate(0.f, V_work.x / Wx) * T; // сдвиг графика вправо на один пиксел
+			break;
 		case Keys::A:
 			T = translate(-V_work.x / Wx, 0.f) * T; // сдвиг графика вправо на один пиксел
 			break;
+		case Keys::S:
+			T = translate(0.f, -V_work.x / Wx) * T; // сдвиг графика вправо на один пиксел
+			break;
+		case Keys::D:
+			T = translate(V_work.x / Wx, 0.f) * T; // сдвиг графика вправо на один пиксел
+			break;
+			//////////////XZ///////////////////
 		case Keys::Z:
 			T = translate(-centerX, -centerY) * T; // перенос начала координат в центр
 			T = scale(1.1) * T; // масштабирование относительно начала координат
 			T = translate(centerX, centerY) * T; // возврат позиции начала координат
 			break;
+		case Keys::X:
+			T = translate(-centerX, -centerY) * T; // перенос начала координат в центр
+			T = scale(0.9) * T; // масштабирование относительно начала координат
+			T = translate(centerX, centerY) * T; // возврат позиции начала координат
+			break;
 
-
+			//////////////1234///////////////////
+		case Keys::D1:
+			numXsect += 1;
+			break;
+		case Keys::D2:
+			if (numXsect > 2)
+			{
+				numXsect -= 1;
+			}
+			break;
+		case Keys::D3:
+			numYsect += 1;
+			break;
+		case Keys::D4:
+			if (numYsect > 2)
+			{
+				numYsect -= 1;
+			}
+			break;
 		default:
 			break;
 		}

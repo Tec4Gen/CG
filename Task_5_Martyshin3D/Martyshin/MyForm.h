@@ -193,16 +193,16 @@ namespace Martyshin {
 		Pen^ gridPen = gcnew Pen(Color::Black, 1);
 		SolidBrush^ drawBrush = gcnew SolidBrush(Color::Black);
 		System::Drawing::Font^ drawFont = gcnew System::Drawing::Font("Arial", 8);
-
+		//сетка по Z
 		float gridStep_x = Wx_work / numXsect; // расстояние между линиями сетки по x
 		float grid_dX = V_work.x / numXsect; // расстояние между линиями сетки по x в мировых координатах
-
+		float tmpXCoord_v;
 		float tick_x = Vc_work.x; // значение соответствующее первой линии сетки
 		for (int i = 0; i <= numXsect; i++) { // цикл по количеству линий
 			tick_x += grid_dX; // вычисляем значение, соответствующее следующей линии
 
 			float tmpXCoord_d = Wcx + i * gridStep_x; // нижняя координата x i-й диагональной линии
-			float tmpXCoord_v = Wcx_work + i * gridStep_x; // координата x i-й вертикальной линии
+			 tmpXCoord_v = Wcx_work + i * gridStep_x; // координата x i-й вертикальной линии
 			// i-я диагональная линия
 			g->DrawLine(gridPen, tmpXCoord_d, Wcy, tmpXCoord_v, Wcy_work);
 			// i-я вертикальная линия
@@ -211,17 +211,17 @@ namespace Martyshin {
 			if (i > 0 && i < numXsect) // если линия не крайняя	// выводим текст в нижней точке диагональной линии
 				g->DrawString(tick_x.ToString("F4"), drawFont, drawBrush, tmpXCoord_d, Wcy);
 		}
-
-		gridStep_x = (Wx - Wx_work) / numZsect; // расстояние между вертикальными линиями сетки по горизонтали
-		float gridStep_y = Wz_work / numZsect; // расстояние между горизонтальными линиями сетки по вертикали
-		float grid_dZ = V_work.z / numZsect; // расстояние между линиями сетки по $z$ в мировых координатах
+		//сетка по X
+		gridStep_x = (Wx - Wx_work) / numZsect; // между  вертикальными линиями сетки по горизонтали
+		float gridStep_y = Wz_work / numZsect; //между между горизонтальными линиями сетки по вертикали
+		float grid_dZ = V_work.z / numZsect; // между линиями сетки по $z$ в мировых координатах
 
 		float tick_z = Vc_work.z; // значение, соответствующее первой линии сетки
 		for (int i = 0; i <= numZsect; i++) { // цикл по количеству линий
 			tick_z += grid_dZ; // вычисляем значение, соответствующее следующей линии
-			float tmpXCoord_v = Wcx_work - i * gridStep_x; // координата x вертикальных линий
-			float tmpYCoord_g = Wcy_work + i * gridStep_y; // координата y горизонтальных линий
-			float tmpXCoord_g = tmpXCoord_v + Wx_work; // вторая координата x горизонтальных линий
+			float tmpXCoord_v = Wcx_work - i * gridStep_x; // x вертикальных линий
+			float tmpYCoord_g = Wcy_work + i * gridStep_y; // yгоризонтальных линий
+			float tmpXCoord_g = tmpXCoord_v + Wx_work; // вторая x горизонтальных линий
 			// i-я вертикальная линия
 			g->DrawLine(gridPen, tmpXCoord_v, tmpYCoord_g, tmpXCoord_v, tmpYCoord_g - Wy_work);
 			// i-я горизонтальная линия
@@ -230,29 +230,22 @@ namespace Martyshin {
 				// выводим текст в правой точке горизонтальной линии
 				g->DrawString(tick_z.ToString("F4"), drawFont, drawBrush, tmpXCoord_g, tmpYCoord_g);
 		}
-///////////////********Task 2(a)********////////////////////
-		float V_YgridFirstRect = Wy_work / numYsect; //расстояние между вертикальными
-		//float G_YgridLastRect = Wy_work / numYsect; // расстояние между линиями сетки по горизонтали
-
-		float tick_y = Vc_work.y / numYsect; // значение, соответствующее первой линии сетки
-		for (int i = 0; i <= numYsect; i++) { // цикл по количеству линий
-			tick_y += grid_dZ; // вычисляем значение, соответствующее следующей линии	
-
-			float CoordY_V = Wcy - i * V_YgridFirstRect; // Координаты y прямоугольника, ***вертикальные линии 
-			float LongCoordY_V = Wcy_work - i * V_YgridFirstRect; // координата y крайнего прямоугольника
-
-			//float tmpXCoord_g = Wx_work; // вторая координата x горизонтальных линий
-			// i-я вертикальная линия
-			g->DrawLine(gridPen, Wcx, CoordY_V, Wcx_work, LongCoordY_V);
-			// i-я горизонтальная линия
-
-			//Wcx + Wx Конечное значение X в прямоугольнике 
-			g->DrawLine(gridPen, Wcx_work, LongCoordY_V, Wcx + Wx, LongCoordY_V);
-			if (i > 0 && i < numZsect) // если линия не крайняя
-				// выводим текст в правой точке горизонтальной линии
-				g->DrawString(tick_y.ToString("F4"), drawFont, drawBrush, Wcx, CoordY_V);
+		///////////////********Task 2(a)********////////////////////
+		//сетка по y
+		gridStep_y = Wy_work / numYsect;
+		float grid_dY = V_work.y / numYsect; // расстояние между линиями сетки по $y$ в мировых координатах
+		float tick_y = Vc_work.y; // значение, соответствующее первой линии сетки
+		for (int i = 0; i <= numYsect; i++) {  // цикл по количеству линий
+			float tmpYCoord_d = Wcy - i * gridStep_y;
+			float tmpYCoord_v = Wcy_work - i * gridStep_y;
+			g->DrawLine(gridPen, Wcx, tmpYCoord_d, Wcx_work, tmpYCoord_v);
+			g->DrawLine(gridPen, Wcx_work, tmpYCoord_v, Wcx_work + Wx_work, tmpYCoord_v);
+			if (i > 0 && i < numYsect)// Если линия не крайняя
+			// выводим текст в правой точке горизонтальной линии
+				g->DrawString(tick_y.ToString("F4"), drawFont, drawBrush, Wcx_work + Wx_work, tmpYCoord_v);
+			tick_y += grid_dY; // Вычисляем значение, соответствующее следующей линии
 		}
-///////////////****************////////////////////
+		///////////////****************////////////////////
 
 		Pen^ pen = gcnew Pen(Color::Blue, 1);
 		float deltaX = V_work.x / Wx_work; // шаг по x в мировых координатах
@@ -292,7 +285,7 @@ namespace Martyshin {
 					end.y = Wcy_w - deltaY * Wy_work;
 				}
 				vec2 tmpEnd = end;
-				bool visible = hasStart && hasEnd && clip(start, end, minX, minY, maxX, maxY);
+				bool visible = hasStart && hasEnd && clip(start, end, Wcx, Wcy_w - Wy_work , maxX, Wcy_w);
 				hasStart = hasEnd;
 				if (visible) { // если отрезок видим
 				// после отсечения, start и end - концы видимой части отрезка
@@ -338,14 +331,127 @@ namespace Martyshin {
 		case Keys::Escape:
 			T = initT;
 			break;
+
+			//////////////WASDRF///////////////////
+		case Keys::W:
+			T = translate(0.f, 0.f, V_work.x / Wx) * T; // сдвиг вперед от наблюдателя
+			break;
 		case Keys::A:
 			T = translate(-V_work.x / Wx, 0.f, 0.f) * T; // сдвиг графика вправо на один
+			break;
+		case Keys::S:
+			T = translate(0.f, 0.f, -V_work.x / Wx) * T; // сдвиг вперед от наблюдателя
+			break;
+		case Keys::D:
+			T = translate(V_work.x / Wx, 0.f, 0.f) * T; // сдвиг графика вправо на один
+			break;
+		case Keys::R:
+			T = translate(0.f, V_work.x / Wx, 0.f) * T; // сдвиг графика вправо на один
+			break;
+		case Keys::F:
+			T = translate(0.f, -V_work.x / Wx, 0.f) * T; // сдвиг графика вправо на один
+			break;
+			//////////////XZ///////////////////
+		case Keys::X:
+			T = translate(-centerX, -centerY, -centerZ) * T; // перенос начала координат в центр
+			T = scale(0.9, 0.9, 0.9) * T; // масштабирование относительно начала координат
+			T = translate(centerX, centerY, centerZ) * T; // возврат позиции начала координат
 			break;
 		case Keys::Z:
 			T = translate(-centerX, -centerY, -centerZ) * T; // перенос начала координат в центр
 			T = scale(1.1, 1.1, 1.1) * T; // масштабирование относительно начала координат
 			T = translate(centerX, centerY, centerZ) * T; // возврат позиции начала координат
 			break;
+			//////////////QECV///////////////////
+		case Keys::Q:
+			if (Wx_part <= 0.9)
+			{
+				Wx_part *= 1.1;
+				rectCalc();
+			}
+			break;
+		case Keys::E:
+			if (Wx_part >= 0.2)
+			{
+				Wx_part *= 0.9;
+				rectCalc();
+			}
+			break;
+		case Keys::C:
+			if (Wy_part <= 0.9)
+			{
+				Wy_part *= 1.1;
+				rectCalc();
+			}
+			break;
+		case Keys::V:
+			if (Wy_part >= 0.2)
+			{
+				Wy_part *= 0.9;
+				rectCalc();
+			}
+			break;
+			////////////////////////////////////
+			//////////////TGYHUJ///////////////////
+		case Keys::T:
+			T = translate(-centerX, -centerY, -centerZ) * T; // перенос начала координат в центр
+			T = scale(1.1, 1, 1) * T; // масштабирование относительно начала координат		
+			T = translate(centerX, centerY, centerZ) * T; // возврат позиции начала координат
+			break;
+		case Keys::G:
+			T = translate(-centerX, -centerY, -centerZ) * T; // перенос начала координат в центр
+			T = scale(0.9, 1, 1) * T; // масштабирование относительно начала координат
+			T = translate(centerX, centerY, centerZ) * T; // возврат позиции начала координат
+			break;
+		case Keys::Y:
+			T = translate(-centerX, -centerY, -centerZ) * T; // перенос начала координат в центр
+			T = scale(1, 1.1, 1) * T; // масштабирование относительно начала координат		
+			T = translate(centerX, centerY, centerZ) * T; // возврат позиции начала координат
+			break;
+		case Keys::H:
+			T = translate(-centerX, -centerY, -centerZ) * T; // перенос начала координат в центр
+			T = scale(1, 0.9, 1) * T; // масштабирование относительно начала координат
+			T = translate(centerX, centerY, centerZ) * T; // возврат позиции начала координат
+			break;
+		case Keys::U:
+			T = translate(-centerX, -centerY, -centerZ) * T; // перенос начала координат в центр
+			T = scale(1, 1, 1.1) * T; // масштабирование относительно начала координат		
+			T = translate(centerX, centerY, centerZ) * T; // возврат позиции начала координат
+			break;
+		case Keys::J:
+			T = translate(-centerX, -centerY, -centerZ) * T; // перенос начала координат в центр
+			T = scale(1, 1, 0.9) * T; // масштабирование относительно начала координат
+			T = translate(centerX, centerY, centerZ) * T; // возврат позиции начала координат
+			break;
+			//////////////123456///////////////////
+		case Keys::D1:
+			numXsect += 1;
+			break;
+		case Keys::D2:
+			if (numXsect > 2)
+			{
+				numXsect -= 1;
+			}
+			break;
+		case Keys::D3:
+			numYsect += 1;
+			break;
+		case Keys::D4:
+			if (numYsect > 2)
+			{
+				numYsect -= 1;
+			}
+			break;
+		case Keys::D5:
+			numZsect += 1;
+			break;
+		case Keys::D6:
+			if (numZsect > 2)
+			{
+				numZsect -= 1;
+			}
+			break;
+			/////////////////////////////////////
 		default:
 			break;
 		}
