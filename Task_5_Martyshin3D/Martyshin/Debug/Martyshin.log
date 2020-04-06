@@ -5,18 +5,20 @@ C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(170,12): warning C
 C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(305,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(305,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(305,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(357,1): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(362,1): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(369,1): warning C4305: '*=': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(376,1): warning C4305: '*=': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(383,1): warning C4305: '*=': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(390,1): warning C4305: '*=': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(398,1): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(403,1): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(408,1): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(413,1): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(418,1): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(423,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(333,1): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(334,1): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(360,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(365,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(372,1): warning C4305: '*=': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(379,1): warning C4305: '*=': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(386,1): warning C4305: '*=': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(393,1): warning C4305: '*=': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(401,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(406,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(411,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(416,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(421,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\MyForm.h(426,1): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Martyshin\Matrix.h(140): warning C4172: returning address of local variable or temporary
   MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Martyshin.vcxproj -> C:\Users\Neo\Desktop\CG\Task_5_Martyshin3D\Debug\Martyshin.exe

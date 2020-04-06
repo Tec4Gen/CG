@@ -330,6 +330,9 @@ namespace Martyshin {
 			//סבנמס
 		case Keys::Escape:
 			T = initT;
+			Wx_part = 0.6;
+			Wy_part = 0.6;
+			rectCalc();
 			break;
 
 			//////////////WASDRF///////////////////
