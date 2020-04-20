@@ -1,0 +1,6 @@
+C:\Users\Neo\Desktop\CG\Task_4_Martyshin\Martyshin\Debug\Martyshin.vcxprojAssemblyReference.cache
+C:\Users\Neo\Desktop\CG\Task_4_Martyshin\Martyshin\Debug\Martyshin.MyForm.resources
+C:\Users\Neo\Desktop\CG\Task_4_Martyshin\Martyshin\Debug\Martyshin.vcxproj.GenerateResource.cache
+C:\Users\Neo\Desktop\CG\Task_6_Martyshin\Martyshin\Debug\Martyshin.vcxprojAssemblyReference.cache
+C:\Users\Neo\Desktop\CG\Task_6_Martyshin\Martyshin\Debug\Martyshin.MyForm.resources
+C:\Users\Neo\Desktop\CG\Task_6_Martyshin\Martyshin\Debug\Martyshin.vcxproj.GenerateResource.cache
