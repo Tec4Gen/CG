@@ -1,10 +1,3 @@
-﻿  MyForm.cpp
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin2D\Martyshin\MyForm.h(158,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin2D\Martyshin\MyForm.h(261,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin2D\Martyshin\MyForm.h(261,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin2D\Martyshin\MyForm.h(261,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin2D\Martyshin\MyForm.h(301,1): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin2D\Martyshin\MyForm.h(306,1): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Neo\Desktop\CG\Task_5_Martyshin2D\Martyshin\Matrix.h(196): warning C4172: returning address of local variable or temporary
+﻿  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
   MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Martyshin.vcxproj -> C:\Users\Neo\Desktop\CG\Task_5_Martyshin2D\Debug\Martyshin.exe

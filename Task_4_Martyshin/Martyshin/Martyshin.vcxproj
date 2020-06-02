@@ -140,6 +140,8 @@
   <ItemGroup>
     <Text Include="Hare.txt" />
     <Text Include="Geometric.txt" />
+    <Text Include="MyProject (3).txt" />
+    <Text Include="MyProject.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

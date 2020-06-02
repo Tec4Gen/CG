@@ -137,6 +137,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Geometric1.txt" />
     <Text Include="Hare.txt" />
     <Text Include="Geometric.txt" />
   </ItemGroup>

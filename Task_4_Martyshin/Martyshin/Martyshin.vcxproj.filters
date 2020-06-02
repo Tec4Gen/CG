@@ -39,5 +39,7 @@
   <ItemGroup>
     <Text Include="Hare.txt" />
     <Text Include="Geometric.txt" />
+    <Text Include="MyProject.txt" />
+    <Text Include="MyProject (3).txt" />
   </ItemGroup>
 </Project>

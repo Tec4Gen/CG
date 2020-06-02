@@ -30,7 +30,7 @@ mat3 rotate(float theta) {
 
 mat4 translate(float Tx, float Ty, float Tz) {
 	 mat4 * res = new mat4(1.f); // создали единичную матрицу
-	 (*res)[0][3] = Tx; // поменяли
+	(*res)[0][3] = Tx; // поменяли
 	(*res)[1][3] = Ty; // значения в последнем столбце
 	(*res)[2][3] = Tz; //
 	return *res;

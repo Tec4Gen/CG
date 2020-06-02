@@ -38,3 +38,7 @@ mat3 MirroxY() {
 	(*res)[1][1] *= -1;
 	return *res;
 }
+
+mat4 rotate(float theta, vec3 n) {
+
+}
